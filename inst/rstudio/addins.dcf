@@ -1,0 +1,9 @@
+Name: Prefixer::
+Description: Prefix functions
+Binding: prefixer
+Interactive: true
+
+Name: Unprefix
+Description: Remove prefix
+Binding: unprefix
+Interactive: false
