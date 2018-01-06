@@ -16,5 +16,5 @@ Imports: stringr (>= 1.0.0),
     stats,
     rstudioapi,
     miniUI,
-    shinyWidgets
+    shinyWidgets (>=0.4.0.900)
 Remotes: dreamRs/shinyWidgets
