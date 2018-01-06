@@ -105,12 +105,15 @@ val_cont <- function(contexts, funs) {
   cont <- str_replace_all(string = contexts, pattern = "#.*", replacement = "")
   cont <- str_replace_all(string = cont, pattern = "[[:alnum:]\\._]+[:space:]*<-", replacement = "")
   cont <- str_replace_all(string = cont, pattern = "[[:alnum:]\\._]+[:space:]*=", replacement = "")
+  cont <- str_replace_all(string = cont, pattern = "[[:alnum:]\\._]+[:space:]*<", replacement = "")
+  cont <- str_replace_all(string = cont, pattern = "[[:alnum:]\\._]+[:space:]*>", replacement = "")
+  cont <- str_replace_all(string = cont, pattern = "[[:alnum:]\\._]+[:space:]*!", replacement = "")
   cont <- str_replace_all(string = cont, pattern = "[[:alnum:]\\._]+\\[", replacement = "")
   cont <- str_replace_all(string = cont, pattern = "\\$[[:alnum:]\\._]+", replacement = "")
   cont <- str_replace_all(string = cont, pattern = "::[[:alnum:]\\._]+", replacement = "")
   # remove anything between quotes
   cont <- str_replace_all(string = cont, pattern = "([\"'])(?:(?=(\\\\?))\\2.)*?\\1", replacement = "")
-  str_detect(string = cont, pattern = funs)
+  str_detect(string = cont, pattern = paste0("(?<![[:alnum:]\\._])", funs, "(?![[:alnum:]\\._])"))
 }
 
 
