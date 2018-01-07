@@ -34,7 +34,8 @@ generate_import_from <- function(script) {
 import_from <- function(fun) {
   body_ <- as.character(body(fun))
   body_ <- paste(body_, collapse = "\n")
-  generate_import_from(body_)
+  res <- generate_import_from(body_)
+  cat(paste(res, collapse = "\n"))
 }
 
 
