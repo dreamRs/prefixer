@@ -19,6 +19,9 @@ Installation :
 # From Github only for now
 source("https://install-github.me/dreamRs/prefixer")
 
+# Note: prefixer require dev version of shinyWidgets
+source("https://install-github.me/dreamRs/shinyWidgets")
+
 # or traditionnal :
 devtools::install_github("dreamRs/prefixer")
 ```
