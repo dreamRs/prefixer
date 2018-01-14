@@ -4,13 +4,15 @@
 \alias{import_from}
 \title{Generate importFrom tag from a function}
 \usage{
-import_from(fun)
+import_from(fun, quiet = FALSE)
 }
 \arguments{
 \item{fun}{A function.}
+
+\item{quiet}{Logical, display output to console ?}
 }
 \value{
-Character vector
+Invisible character string
 }
 \description{
 Works only if functions used are prefixed in the body.
@@ -18,7 +20,7 @@ Works only if functions used are prefixed in the body.
 \examples{
 
 my_fun <- function(path) {
-  read.table(file = path, header = FALSE, sep = "\\t")
+  utils::read.table(file = path, header = FALSE, sep = "\\t")
 }
 import_from(my_fun)
 

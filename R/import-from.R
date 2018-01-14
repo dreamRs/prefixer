@@ -20,22 +20,64 @@ generate_import_from <- function(script) {
 #' Works only if functions used are prefixed in the body.
 #'
 #' @param fun A function.
+#' @param quiet Logical, display output to console ?
 #'
-#' @return Character vector
+#' @return Invisible character string
 #' @export
 #'
 #' @examples
 #'
 #' my_fun <- function(path) {
-#'   read.table(file = path, header = FALSE, sep = "\t")
+#'   utils::read.table(file = path, header = FALSE, sep = "\t")
 #' }
 #' import_from(my_fun)
 #'
-import_from <- function(fun) {
+import_from <- function(fun, quiet = FALSE) {
   body_ <- as.character(body(fun))
   body_ <- paste(body_, collapse = "\n")
   res <- generate_import_from(body_)
-  cat(paste(res, collapse = "\n"))
+  if (!quiet)
+    cat(paste(res, collapse = "\n"))
+  invisible(paste(res, collapse = "\n"))
+}
+
+
+
+
+
+#' Addin to generate importFrom tag for functions
+#'
+#' @noRd
+#' @importFrom stringr str_which
+#' @importFrom rstudioapi getActiveDocumentContext
+#'
+importFrom <- function() {
+  script <- getActiveDocumentContext()$contents
+  script_ <- paste(script, collapse = "\n")
+  if.env <- new.env()
+  try_parse <- try(eval(parse(text = script_), envir = if.env), silent = TRUE)
+  if (class(try_parse) == "try-error") {
+    warning("Something went wrong, does your script contains only functions ?")
+    return(invisible())
+  }
+  if_insert <- lapply(
+    X = ls(if.env),
+    FUN = function(x) {
+      if (is.function(if.env[[x]])) {
+        list(
+          importFrom = paste0(import_from(if.env[[x]], quiet = TRUE), "\n"),
+          num_row = str_which(
+            string = script, 
+            pattern = paste0(x, "[:space:]*(<-|=)[:space:]function")
+          )
+        )
+      }
+    }
+  )
+  insertText(
+    location = Map(c, sapply(if_insert, `[[`, "num_row"), 1), 
+    text = sapply(if_insert, `[[`, "importFrom")
+  )
 }
 
 

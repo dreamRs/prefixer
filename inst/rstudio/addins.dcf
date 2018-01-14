@@ -7,3 +7,8 @@ Name: Unprefix
 Description: Remove prefix
 Binding: unprefix
 Interactive: false
+
+Name: @importFrom
+Description: Add importFrom tag above functions
+Binding: importFrom
+Interactive: false
