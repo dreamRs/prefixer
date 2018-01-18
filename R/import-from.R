@@ -51,7 +51,7 @@ import_from <- function(fun, quiet = FALSE) {
 #' @importFrom stringr str_which
 #' @importFrom rstudioapi getActiveDocumentContext
 #'
-importFrom <- function() {
+rImportFrom <- function() {
   script <- getActiveDocumentContext()$contents
   script_ <- paste(script, collapse = "\n")
   if.env <- new.env()
@@ -64,16 +64,22 @@ importFrom <- function() {
     X = ls(if.env),
     FUN = function(x) {
       if (is.function(if.env[[x]])) {
-        list(
-          importFrom = paste0(import_from(if.env[[x]], quiet = TRUE), "\n"),
-          num_row = str_which(
-            string = script, 
-            pattern = paste0(x, "[:space:]*(<-|=)[:space:]function")
+        tag_if <- import_from(if.env[[x]], quiet = TRUE)
+        if (nchar(tag_if) > 0) {
+          list(
+            importFrom = paste0(tag_if, "\n"),
+            num_row = str_which(
+              string = script, 
+              pattern = paste0(x, "[:space:]*(<-|=)[:space:]function")
+            )
           )
-        )
+        } else {
+          NULL
+        }
       }
     }
   )
+  if_insert <- dropNullsOrEmpty(if_insert)
   insertText(
     location = Map(c, sapply(if_insert, `[[`, "num_row"), 1), 
     text = sapply(if_insert, `[[`, "importFrom")
@@ -83,4 +89,10 @@ importFrom <- function() {
 
 
 
+nullOrEmpty <- function(x) {
+  is.null(x) || length(x) == 0
+}
+dropNullsOrEmpty <- function(x) {
+  x[!vapply(x, nullOrEmpty, FUN.VALUE=logical(1))]
+}
 

@@ -10,5 +10,5 @@ Interactive: false
 
 Name: @importFrom
 Description: Add importFrom tag above functions
-Binding: importFrom
+Binding: rImportFrom
 Interactive: false
