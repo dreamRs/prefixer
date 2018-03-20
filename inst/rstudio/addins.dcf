@@ -12,3 +12,8 @@ Name: @importFrom
 Description: Add importFrom tag above functions
 Binding: rImportFrom
 Interactive: false
+
+Name: Roxygen comment
+Description: Comment selected lines with #'
+Binding: add_roxygen_comment
+Interactive: false
