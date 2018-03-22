@@ -20,9 +20,6 @@ Installation :
 # From Github only for now
 source("https://install-github.me/dreamRs/prefixer")
 
-# Note: prefixer require dev version of shinyWidgets
-source("https://install-github.me/dreamRs/shinyWidgets")
-
 # or traditionnal :
 devtools::install_github("dreamRs/prefixer")
 ```
@@ -32,14 +29,71 @@ devtools::install_github("dreamRs/prefixer")
 
 You can launch the addin via RStudio's Addins menu. Interface looks like this :
 
-![prefixer](inst/img/prefixerUI.png)
+![](inst/img/prefixerUI.png)
+
+
+```r
+fread_dir <- function(path, pattern = "\\.csv$") {
+  paths <- list.files(path = path, pattern = pattern, full.names = TRUE)
+  files <- lapply(paths, fread)
+  files <- setNames(files, paths)
+  rbindlist(l = files, idcol = "path")
+}
+```
+
+Becomes => 
+
+```r
+fread_dir <- function(path, pattern = "\\.csv$") {
+  paths <- list.files(path = path, pattern = pattern, full.names = TRUE)
+  files <- lapply(paths, data.table::fread)
+  files <- stats::setNames(files, paths)
+  data.table::rbindlist(l = files, idcol = "path")
+}
+```
+
+
 
 
 ## @importFrom
 
-To generate `@importFrom` tag, you can use `import_from` manually (for the moment) :
+From prefixed functions, you can generate roxygen `@importFrom` tag via addin *@importFrom*.
+
+Or manually with `import_from(fun = fread_dir)`:
 
 ```r
-import_from(fun = prefixer)
+#' @importFrom data.table fread rbindlist
+#' @importFrom stats setNames
+fread_dir <- function(path, pattern = "\\.csv$") {
+  paths <- list.files(path = path, pattern = pattern, full.names = TRUE)
+  files <- lapply(paths, data.table::fread)
+  files <- stats::setNames(files, paths)
+  data.table::rbindlist(l = files, idcol = "path")
+}
 ```
+
+
+## Unprefix
+
+After generated `@importFrom` tags, you can if you want remove prefix before your functions via addin *Unprefix* : 
+
+```r
+#' @importFrom data.table fread rbindlist
+#' @importFrom stats setNames
+fread_dir <- function(path, pattern = "\\.csv$") {
+  paths <- list.files(path = path, pattern = pattern, full.names = TRUE)
+  files <- lapply(paths, fread)
+  files <- setNames(files, paths)
+  rbindlist(l = files, idcol = "path")
+}
+```
+
+
+## Roxygen comments
+
+Addin `Roxygen comment` allow to put comment selected line with `#'`.
+
+
+
+
 
