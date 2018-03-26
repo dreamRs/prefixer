@@ -1,6 +1,6 @@
 # prefixer::
 
-> Prefix function with their namespace
+> Prefix function with their namespace and other tools for writing functions
 
 [![Travis-CI Build Status](https://travis-ci.org/dreamRs/prefixer.svg?branch=master)](https://travis-ci.org/dreamRs/prefixer)
 [![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)
@@ -23,6 +23,10 @@ source("https://install-github.me/dreamRs/prefixer")
 # or traditionnal :
 devtools::install_github("dreamRs/prefixer")
 ```
+
+
+:warning: functions of this packages will modify your scripts
+
 
 
 ## prefixer:: gadget
@@ -91,9 +95,33 @@ fread_dir <- function(path, pattern = "\\.csv$") {
 
 ## Roxygen comments
 
-Addin `Roxygen comment` allow to comment selected line with `#'`.
+Addin *Roxygen comment* allow to comment selected line with `#'`.
 
 
+## Not-ASCII
 
+Addin *Not-ASCII* escape all not-ASCII characters between quotes to Unicode, to avoid warning in R CMD check :
 
+```r
+frenchFileInput <- function(inputId) {
+  fileInput(
+    inputId = inputId,
+    label = "Sélectionner un fichier :",
+    buttonLabel = "Parcourir...",
+    placeholder = "Aucun fichier sélectionné"
+  )
+}
+```
+becomes =>
+
+```r
+frenchFileInput <- function(inputId) {
+  fileInput(
+    inputId = inputId,
+    label = "S\u00e9lectionner un fichier :",
+    buttonLabel = "Parcourir...",
+    placeholder = "Aucun fichier s\u00e9lectionn\u00e9"
+  )
+}
+```
 

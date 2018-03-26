@@ -18,7 +18,7 @@ Description: Comment selected lines with #'
 Binding: v_add_roxygen_comment
 Interactive: false
 
-Name: Non-ASCII
-Description: Remove non ASCII characters
+Name: Not-ASCII
+Description: Remove not-ASCII characters
 Binding: w_escape_unicode
 Interactive: false
