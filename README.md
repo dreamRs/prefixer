@@ -25,7 +25,7 @@ devtools::install_github("dreamRs/prefixer")
 ```
 
 
-:warning: functions of this packages will modify your scripts
+:warning: functions of this package will modify your scripts
 
 
 
