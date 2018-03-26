@@ -91,7 +91,7 @@ fread_dir <- function(path, pattern = "\\.csv$") {
 
 ## Roxygen comments
 
-Addin `Roxygen comment` allow to put comment selected line with `#'`.
+Addin `Roxygen comment` allow to comment selected line with `#'`.
 
 
 

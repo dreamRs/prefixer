@@ -15,5 +15,10 @@ Interactive: false
 
 Name: Roxygen comment
 Description: Comment selected lines with #'
-Binding: add_roxygen_comment
+Binding: v_add_roxygen_comment
+Interactive: false
+
+Name: Non-ASCII
+Description: Remove non ASCII characters
+Binding: w_escape_unicode
 Interactive: false
