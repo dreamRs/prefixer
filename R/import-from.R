@@ -49,10 +49,10 @@ import_from <- function(fun, quiet = FALSE) {
 #'
 #' @noRd
 #' @importFrom stringr str_which
-#' @importFrom rstudioapi getActiveDocumentContext
+#' @importFrom rstudioapi getSourceEditorContext
 #'
 rImportFrom <- function() {
-  script <- getActiveDocumentContext()$contents
+  script <- rstudioapi::getSourceEditorContext()$contents
   script_ <- paste(script, collapse = "\n")
   if.env <- new.env()
   try_parse <- try(eval(parse(text = script_), envir = if.env), silent = TRUE)
@@ -80,7 +80,7 @@ rImportFrom <- function() {
     }
   )
   if_insert <- dropNullsOrEmpty(if_insert)
-  insertText(
+  rstudioapi::insertText(
     location = Map(c, sapply(if_insert, `[[`, "num_row"), 1), 
     text = sapply(if_insert, `[[`, "importFrom")
   )

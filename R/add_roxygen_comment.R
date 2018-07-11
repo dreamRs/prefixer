@@ -3,14 +3,14 @@
 #'
 #' @noRd
 #' 
-#' @importFrom rstudioapi getActiveDocumentContext insertText
+#' @importFrom rstudioapi getSourceEditorContext insertText
 #'
 v_add_roxygen_comment <- function() {
-  context <- getActiveDocumentContext()
+  context <- rstudioapi::getSourceEditorContext()
   start <- context$selection[[1]]$range$start["row"]
   end <- context$selection[[1]]$range$end["row"]
   pos <- Map(c, start:end, 1)
-  insertText(pos, "#' ")
+  rstudioapi::insertText(pos, "#' ")
 }
 
 

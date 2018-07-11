@@ -7,7 +7,7 @@
 #' @export
 #'
 #' @importFrom miniUI miniPage miniContentPanel
-#' @importFrom rstudioapi getActiveDocumentContext insertText
+#' @importFrom rstudioapi getSourceEditorContext insertText
 #' @importFrom shiny tags fillPage uiOutput splitLayout actionButton
 #' tagList icon actionLink reactiveValues observeEvent showModal
 #' modalDialog modalButton selectizeInput removeModal renderUI HTML
@@ -23,7 +23,7 @@
 #' }
 prefixer <- function() {
 
-  script <- getActiveDocumentContext()$contents
+  script <- rstudioapi::getSourceEditorContext()$contents
   if (sum(nchar(script), na.rm = TRUE) == 0) {
     warning("It seems there are nothing to prefix...")
     return(invisible())
