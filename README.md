@@ -17,10 +17,13 @@ If you're in a package, you can generate `@importFrom` tag from function definit
 Installation :
 
 ```r
-# From Github only for now
+# with remotes
+remotes::install_github("dreamRs/prefixer")
+
+# or with install-github.me service (based on remotes)
 source("https://install-github.me/dreamRs/prefixer")
 
-# or traditionnal :
+# or with devtools:
 devtools::install_github("dreamRs/prefixer")
 ```
 
