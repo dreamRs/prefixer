@@ -1,7 +1,7 @@
 Package: prefixer
 Type: Package
 Title: Prefix Functions With Appropriate Namespace
-Version: 0.1.0.950
+Version: 0.1.1
 Authors@R: c(
     person("Victor", "Perrier", email = "victor.perrier@dreamRs.fr", role = c("aut", "cre")),
     person("Fanny", "Meyer", email = "victor.perrier@dreamRs.fr", role = c("aut"))
