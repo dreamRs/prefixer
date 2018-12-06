@@ -1,4 +1,4 @@
-# prefixer::
+# prefixer:: <img src="man/figures/logo_prefixer.png" width=200 align="right" />
 
 > Prefix function with their namespace and other tools for writing functions
 
