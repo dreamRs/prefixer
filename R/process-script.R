@@ -47,7 +47,7 @@ extract_words <- function(script) {
   script_ <- str_replace(string = script_, pattern = "[[:alnum:]\\._]+[:space:]*=", replacement = "")
   script_ <- str_replace(string = script_, pattern = "\\$[[:alnum:]\\._]+", replacement = "")
   # script_ <- str_replace(string = script_, pattern = "(?<=\"|').*(?=\"|')", replacement = "")
-  script_ <- str_replace(string = script_, pattern = "([\"'])(?:(?=(\\\\?))\\2.)*?\\1", replacement = "")
+  script_ <- str_replace_all(string = script_, pattern = "([\"'`])(?:(?=(\\\\?))\\2.)*?\\1", replacement = "")
   script_ <- str_replace_all(string = script_, pattern = "library\\(.*\\)", replacement = "")
   script_ <- str_replace_all(string = script_, pattern = "[[:alnum:]\\.]+::[[:alnum:]\\._]+", replacement = "")
   funs <- str_extract_all(string = script_, pattern = "[[:alnum:]\\._]+")
