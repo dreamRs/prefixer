@@ -70,7 +70,7 @@ rImportFrom <- function() {
             importFrom = paste0(tag_if, "\n"),
             num_row = str_which(
               string = script, 
-              pattern = paste0("^", x, "[:space:]*(<-|=)[:space:]function")
+              pattern = paste0("^", x, "[:space:]*(<-|=)[:space:]*function")
             )
           )
         } else {
