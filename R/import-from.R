@@ -37,7 +37,7 @@ import_from <- function(fun, quiet = FALSE) {
   body_ <- paste(body_, collapse = "\n")
   res <- generate_import_from(body_)
   if (!quiet)
-    cat(paste(res, collapse = "\n"))
+    cat(paste0(paste(res, collapse = "\n"),"\n"))
   invisible(paste(res, collapse = "\n"))
 }
 
