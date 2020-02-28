@@ -20,7 +20,7 @@ Works only if functions used are prefixed in the body.
 \examples{
 
 my_fun <- function(path) {
-  utils::read.table(file = path, header = FALSE, sep = "\\t")
+  utils::read.table(file = path, header = FALSE, sep = "\t")
 }
 import_from(my_fun)
 
