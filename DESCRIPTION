@@ -20,4 +20,5 @@ Imports: stringr (>= 1.0.0),
     stats,
     rstudioapi,
     miniUI,
-    shinyWidgets
+    shinyWidgets,
+    renv
