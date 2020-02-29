@@ -4,11 +4,13 @@
 \alias{show_nonascii_file}
 \title{Search for non-ASCII characters in files}
 \usage{
-show_nonascii_file(path = ".")
+show_nonascii_file(path = ".", size_limit = 5e+05)
 }
 \arguments{
 \item{path}{Path where to start searching. If a directory,
 search in all files recursively.}
+
+\item{size_limit}{Limit size of files scanned (in bytes).}
 }
 \value{
 a \code{data.frame} with files and lines where

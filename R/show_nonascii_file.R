@@ -3,6 +3,7 @@
 #'
 #' @param path Path where to start searching. If a directory,
 #'  search in all files recursively.
+#' @param size_limit Limit size of files scanned (in bytes).
 #'
 #' @return a \code{data.frame} with files and lines where
 #'  non-ascii have been detected, if none return \code{NULL}.
@@ -19,7 +20,7 @@
 #' 
 #' }
 #' 
-show_nonascii_file <- function(path = ".") {
+show_nonascii_file <- function(path = ".", size_limit = 5e5) {
   path <- normalizePath(path, mustWork = TRUE)
   files <- list.files(
     path = path, include.dirs = FALSE, 
@@ -37,7 +38,7 @@ show_nonascii_file <- function(path = ".") {
   nonascii <- lapply(
     X = files, 
     FUN = function(x) {
-      if (file.size(x) < 5e5) {
+      if (file.size(x) < size_limit) {
         content <- try(readLines(x, warn = FALSE), silent = TRUE)
         if (inherits(content, "try-error")) {
           warning("Unable to inspect", x, call. = FALSE)

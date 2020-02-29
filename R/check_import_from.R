@@ -49,7 +49,7 @@ check_import_from <- function(path = ".") {
   appears <- importFrom[!appears]
   if (length(appears) == 0) {
     message("All functions in @importFrom are used !")
-    return(invisible())
+    return(invisible(character(0)))
   } else {
     warning(paste("These functions do not seem to be used:", stri_c(appears, collapse = ", ")), call. = FALSE)
     return(invisible(appears))
