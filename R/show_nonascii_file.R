@@ -4,6 +4,8 @@
 #' @param path Path where to start searching. If a directory,
 #'  search in all files recursively.
 #' @param size_limit Limit size of files scanned (in bytes).
+#' @param ignore_dir Ignore some directories (relative to \code{path}).
+#' @param ignore_ext Ignore with those extensions.
 #'
 #' @return a \code{data.frame} with files and lines where
 #'  non-ascii have been detected, if none return \code{NULL}.
@@ -11,6 +13,7 @@
 #' 
 #' @importFrom stringi stri_enc_isascii
 #' @importFrom rstudioapi sourceMarkers
+#' @importFrom tools file_ext
 #'
 #' @examples
 #' 
@@ -20,13 +23,23 @@
 #' 
 #' }
 #' 
-show_nonascii_file <- function(path = ".", size_limit = 5e5) {
+show_nonascii_file <- function(path = ".", size_limit = 5e5, 
+                               ignore_dir = c("docs"), 
+                               ignore_ext = c("png", "jpg", "rds", "rda")) {
   path <- normalizePath(path, mustWork = TRUE)
   files <- list.files(
     path = path, include.dirs = FALSE, 
     full.names = TRUE, no.. = TRUE,
     recursive = TRUE
   )
+  extensions <- tolower(tools::file_ext(files))
+  files <- files[!extensions %in% tolower(ignore_ext)]
+  ignore_dir <- file.path(path, ignore_dir)
+  ignore_dir <- Reduce(f = `|`, x = lapply(
+    X = ignore_dir, FUN = grepl, 
+    x = files, fixed = TRUE
+  ))
+  files <- files[!ignore_dir]
   files <- grep(
     pattern = "/~$", x = files,
     fixed = TRUE, value = TRUE, invert = TRUE

@@ -2,7 +2,7 @@
 % Please edit documentation in R/count-call.R
 \name{count_calls}
 \alias{count_calls}
-\title{Count calls in a script}
+\title{Count calls in a script or a directory}
 \usage{
 count_calls(path, ignore_base = TRUE, find_pkgs = TRUE)
 }
@@ -17,5 +17,5 @@ count_calls(path, ignore_base = TRUE, find_pkgs = TRUE)
 a \code{data.frame} with 2 columns: \code{call} and \code{n}
 }
 \description{
-Count calls in a script
+Count calls in a script or a directory
 }
