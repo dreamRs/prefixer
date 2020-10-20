@@ -11,6 +11,12 @@
 #' @importFrom renv dependencies
 #' @importFrom stats aggregate
 #'
+#' @examples 
+#' \dontrun{
+#' 
+#' count_calls("PATH/TO/SCRIPTS")
+#' 
+#' }
 count_calls <- function(path, ignore_base = TRUE, find_pkgs = TRUE) {
   path <- normalizePath(path, mustWork = TRUE)
   if (length(path) > 1)
@@ -33,7 +39,9 @@ count_calls <- function(path, ignore_base = TRUE, find_pkgs = TRUE) {
     }
     calls$package <- find_pkg(calls$call)
   }
-  calls[order(calls$n, decreasing = TRUE), ]
+  calls <- calls[order(calls$n, decreasing = TRUE), ]
+  rownames(calls) <- seq_len(nrow(calls))
+  return(calls)
 }
 
 count_calls_script <- function(path) {
@@ -75,10 +83,12 @@ find_pkg <- function(funs) {
   } else {
     where <- getAnywhere(funs)$where
     if (length(where) < 1)
-      where <- ""
+      where <- NA_character_
+    where <- gsub("namespace:", "", where)
+    where <- gsub("package:", "", where)
     if (length(where) > 1)
-      where <- paste(where, collapse = ";")
-    gsub("namespace:", "", where)
+      where <- paste(unique(where), collapse = ";")
+    return(where)
   }
 }
 

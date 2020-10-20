@@ -19,3 +19,10 @@ a \code{data.frame} with 2 columns: \code{call} and \code{n}
 \description{
 Count calls in a script or a directory
 }
+\examples{
+\dontrun{
+
+count_calls("PATH/TO/SCRIPTS")
+
+}
+}

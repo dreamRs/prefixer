@@ -23,12 +23,6 @@ Installation :
 ```r
 # with remotes
 remotes::install_github("dreamRs/prefixer")
-
-# or with install-github.me service (based on remotes)
-source("https://install-github.me/dreamRs/prefixer")
-
-# or with devtools:
-devtools::install_github("dreamRs/prefixer")
 ```
 
 
@@ -131,4 +125,29 @@ frenchFileInput <- function(inputId) {
   )
 }
 ```
+
+
+## Count calls
+
+Get functions used in scripts and where they come from, for example functions used in this package:
+
+```r
+count_calls("R/")
+#                      call  n                  package
+# 1                    tags 36                htmltools
+# 2              rstudioapi 15                     <NA>
+# 3         str_replace_all 15                  stringr
+# 4                     div  9                htmltools
+# 5                       b  8                     <NA>
+# 6            observeEvent  8                    shiny
+# 7                     pre  6                htmltools
+# 8           set_selection  6                 prefixer
+# 9  getSourceEditorContext  5               rstudioapi
+# 10             insertText  5               rstudioapi
+# ...
+```
+
+
+
+
 
