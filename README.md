@@ -6,6 +6,7 @@
 [![Travis-CI Build Status](https://travis-ci.org/dreamRs/prefixer.svg?branch=master)](https://travis-ci.org/dreamRs/prefixer)
 [![Project Status: Active-The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)
 [![Lifecycle: stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://www.tidyverse.org/lifecycle/#stable)
+[![R build status](https://github.com/dreamRs/prefixer/workflows/R-CMD-check/badge.svg)](https://github.com/dreamRs/prefixer/actions)
 <!-- badges: end -->
 
 
