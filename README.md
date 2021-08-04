@@ -1,6 +1,6 @@
 # prefixer:: <img src="man/figures/logo_prefixer.png" width=200 align="right" />
 
-> Prefix function with their namespace and other tools for writing functions
+> Prefix function with their namespace and other tools for writing functions / packages
 
 <!-- badges: start -->
 [![Travis-CI Build Status](https://travis-ci.org/dreamRs/prefixer.svg?branch=master)](https://travis-ci.org/dreamRs/prefixer)
@@ -15,7 +15,7 @@
 It can be useful to prefix function in a script to prevent use of the wrong one, e.g. `stats::filter` vs `dplyr::filter` or `plyr::summarise` vs `dplyr::summarise`.
 This package provide a Shiny gadget to interactively add prefix to function in a script, if a function exist in several packages, you can choose the one you want use.
 
-If you're in a package, you can generate `@importFrom` tag from function definition and after remove prefix if needeed.
+If you're in a package, you can generate `@importFrom` tag from function definition and after remove prefix if needed.
 
 
 Installation :
@@ -59,7 +59,6 @@ fread_dir <- function(path, pattern = "\\.csv$") {
 
 
 
-
 ## @importFrom
 
 From prefixed functions, you can generate roxygen `@importFrom` tag via addin *@importFrom*.
@@ -78,6 +77,7 @@ fread_dir <- function(path, pattern = "\\.csv$") {
 ```
 
 
+
 ## Unprefix
 
 After generated `@importFrom` tags, you can if you want remove prefix before your functions via addin *Unprefix* : 
@@ -94,9 +94,11 @@ fread_dir <- function(path, pattern = "\\.csv$") {
 ```
 
 
+
 ## Roxygen comments
 
 Addin *Roxygen comment* allow to comment selected line with `#'`.
+
 
 
 ## Not-ASCII
@@ -127,6 +129,34 @@ frenchFileInput <- function(inputId) {
 ```
 
 
+
+## Show Non-ASCII files
+
+Show files containing Non-ASCII characters in RStudio markers tabs. This function is similar to `tools::showNonASCIIfile`.
+
+```r
+show_nonascii_file()
+```
+![](man/figures/show_nonascii_file.png)
+
+
+
+## Check Rd files
+
+Check if your Rd files (documentation) contains examples and return value:
+
+```r
+check_Rd_examples()
+# 1 Rd file(s) with no examples. 
+#  - unprefix.Rd 
+
+check_Rd_value()
+# 2 Rd file(s) with no value. 
+#  - prefixer.Rd 
+#  - unprefix.Rd 
+```
+
+
 ## Count calls
 
 Get functions used in scripts and where they come from, for example functions used in this package:
@@ -146,8 +176,5 @@ count_calls("R/")
 # 10             insertText  5               rstudioapi
 # ...
 ```
-
-
-
 
 
