@@ -1,7 +1,7 @@
 Package: prefixer
 Type: Package
 Title: Prefix Functions With Appropriate Namespace
-Version: 0.1.5
+Version: 0.1.5.9000
 Authors@R: c(
     person("Victor", "Perrier", email = "victor.perrier@dreamRs.fr", role = c("aut", "cre")),
     person("Fanny", "Meyer", email = "fanny.meyer@dreamRs.fr", role = c("aut"))
@@ -12,7 +12,7 @@ Description: RStudio addins helping to develop functions in a package.
     selected line with roxygen comment. 
 License: GPL-3
 Encoding: UTF-8
-RoxygenNote: 7.1.1
+RoxygenNote: 7.1.2
 Imports: stringr (>= 1.0.0),
     stringi,
     shiny,

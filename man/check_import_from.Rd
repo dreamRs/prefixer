@@ -13,7 +13,7 @@ check_import_from(path = ".")
 Functions not used invisibly.
 }
 \description{
-Checks if the functions declared in the NAMESPACE 
+Checks if the functions declared in the NAMESPACE
 importFrom are actually used in the package functions.
 }
 \examples{
